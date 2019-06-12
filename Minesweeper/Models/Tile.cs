@@ -33,6 +33,8 @@ namespace MineSweeper.Models
         public TileType ShownType;
         public Bitmap ShownImage { get; set; }
 
+        public int AdjacentBombs { get; set; }
+
         public Tile(int x, int y, TileType type, Bitmap image)
         {
             X = x;

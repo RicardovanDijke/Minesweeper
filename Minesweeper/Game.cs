@@ -18,14 +18,16 @@ namespace Minesweeper
 
         private MapFunctions mapFunctions = new MapFunctions();
 
+        private Bitmap bombTexture = new Bitmap(@"Textures/bomb.png");
+
         public Game()
         {
             InitializeComponent();
-            Map = mapFunctions.GenerateMap(5);
+            Map = mapFunctions.GenerateMap(10);
 
         }
 
-        private void Game_Paint(object sender, PaintEventArgs e)
+        private void Panel1_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
             for (int x = 0; x < Map.GetLength(0); x++)
@@ -35,6 +37,17 @@ namespace Minesweeper
                     g.DrawImage(Map[x, y].ShownImage, x * 16, y * 16);
                 }
             }
+        }
+
+        private void Panel1_MouseClick(object sender, MouseEventArgs e)
+        {
+            int x = e.X / 16;
+            int y = e.Y / 16;
+            Console.WriteLine(x + "," + y);
+
+            Map[x, y].ShownImage = bombTexture;
+            panel1.Refresh();
+
         }
     }
 }
