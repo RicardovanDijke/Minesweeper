@@ -13,13 +13,15 @@ namespace Minesweeper
     public class Minesweeper
     {
         public Tile[,] Map { get; set; }
-        private MapFunctions mapFunctions = new MapFunctions();
+        private bool emptyMap;
+        private readonly MapFunctions mapFunctions = new MapFunctions();
 
         private Bitmap bombTexture = new Bitmap(@"Textures/bomb.png");
 
         public Minesweeper(int size)
         {
-            Map = mapFunctions.GenerateMap(size);
+            Map = mapFunctions.GenerateEmptyMap(size);
+            emptyMap = true;
         }
 
 
@@ -27,6 +29,11 @@ namespace Minesweeper
         {
             Map[x, y].ShownImage = bombTexture;
 
+            if (emptyMap)
+            {
+                Map = mapFunctions.PopulateMap(Map, 1.5, new Point(x,y));
+                emptyMap = false;
+            }
         }
     }
 }

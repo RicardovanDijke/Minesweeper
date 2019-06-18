@@ -11,21 +11,14 @@ namespace MineSweeper.Models
     {
         Blank,
         Grass,
-        One,
-        Two,
-        Three,
-        Four,
-        Five,
-        Six,
-        Seven,
-        Eight,
+        Numbered,
         Bomb
     }
 
     public class Tile
     {
-        public int X { get; set; }
-        public int Y { get; set; }
+        public int X { get;  }
+        public int Y { get; }
 
         public TileType RealType;
         public Bitmap RealImage { get; set; }
